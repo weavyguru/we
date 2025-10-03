@@ -2,14 +2,18 @@
 
 // Toast notification helper
 function showToast(message, variant = 'primary') {
-  const toast = Object.assign(document.createElement('sl-alert'), {
+  const alert = Object.assign(document.createElement('sl-alert'), {
     variant,
     closable: true,
     duration: 3000,
     innerHTML: `<sl-icon name="${variant === 'danger' ? 'exclamation-octagon' : variant === 'success' ? 'check2-circle' : 'info-circle'}" slot="icon"></sl-icon>${message}`
   });
-  document.body.append(toast);
-  toast.toast();
+  document.body.append(alert);
+
+  // Wait for Shoelace to be ready before showing toast
+  requestAnimationFrame(() => {
+    alert.toast();
+  });
 }
 
 let currentStep = 1;
