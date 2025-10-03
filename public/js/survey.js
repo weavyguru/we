@@ -1,6 +1,7 @@
 // Survey JavaScript
 
 // Toast notification helper
+let toastsInitialized = false;
 function showToast(message, variant = 'primary') {
   const alert = Object.assign(document.createElement('sl-alert'), {
     variant,
@@ -10,10 +11,14 @@ function showToast(message, variant = 'primary') {
   });
   document.body.append(alert);
 
-  // Wait for Shoelace to be ready before showing toast
-  requestAnimationFrame(() => {
-    alert.toast();
-  });
+  // Ensure component is defined before calling toast
+  if (!toastsInitialized) {
+    toastsInitialized = true;
+    // Give extra time for first toast
+    setTimeout(() => alert.toast(), 100);
+  } else {
+    requestAnimationFrame(() => alert.toast());
+  }
 }
 
 let currentStep = 1;
