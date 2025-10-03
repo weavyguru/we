@@ -1,5 +1,17 @@
 // Survey JavaScript
 
+// Toast notification helper
+function showToast(message, variant = 'primary') {
+  const toast = Object.assign(document.createElement('sl-alert'), {
+    variant,
+    closable: true,
+    duration: 3000,
+    innerHTML: `<sl-icon name="${variant === 'danger' ? 'exclamation-octagon' : variant === 'success' ? 'check2-circle' : 'info-circle'}" slot="icon"></sl-icon>${message}`
+  });
+  document.body.append(toast);
+  toast.toast();
+}
+
 let currentStep = 1;
 const totalSteps = parseInt(document.getElementById('totalQuestions')?.value || 0);
 const surveyForm = document.getElementById('surveyForm');
@@ -66,7 +78,7 @@ function validateCurrentStep() {
   }
 
   if (isRequired && !value) {
-    alert('Please answer this question before continuing.');
+    showToast('Please answer this question before continuing.', 'warning');
     return false;
   }
 
@@ -74,7 +86,7 @@ function validateCurrentStep() {
   if (value && questionType === 'email') {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(value)) {
-      alert('Please enter a valid email address.');
+      showToast('Please enter a valid email address.', 'warning');
       return false;
     }
   }
@@ -83,7 +95,7 @@ function validateCurrentStep() {
     try {
       new URL(value);
     } catch {
-      alert('Please enter a valid URL (e.g., https://example.com)');
+      showToast('Please enter a valid URL (e.g., https://example.com)', 'warning');
       return false;
     }
   }
@@ -164,10 +176,10 @@ surveyForm?.addEventListener('submit', async (e) => {
       document.querySelector('.mb-8').classList.add('hidden'); // Hide progress bar
     } else {
       const error = await response.json();
-      alert('Error submitting survey: ' + error.error);
+      showToast('Error submitting survey: ' + error.error, 'danger');
     }
   } catch (error) {
-    alert('Error: ' + error.message);
+    showToast('Error: ' + error.message, 'danger');
   }
 });
 

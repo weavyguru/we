@@ -1,5 +1,17 @@
 // Admin Dashboard JavaScript
 
+// Toast notification helper
+function showToast(message, variant = 'primary') {
+  const toast = Object.assign(document.createElement('sl-alert'), {
+    variant,
+    closable: true,
+    duration: 3000,
+    innerHTML: `<sl-icon name="${variant === 'danger' ? 'exclamation-octagon' : variant === 'success' ? 'check2-circle' : 'info-circle'}" slot="icon"></sl-icon>${message}`
+  });
+  document.body.append(toast);
+  toast.toast();
+}
+
 const modal = document.getElementById('questionModal');
 const questionForm = document.getElementById('questionForm');
 const addQuestionBtn = document.getElementById('addQuestionBtn');
@@ -56,10 +68,10 @@ questionForm?.addEventListener('submit', async (e) => {
       location.reload(); // Reload to show updated list
     } else {
       const error = await response.json();
-      alert('Error: ' + error.error);
+      showToast('Error: ' + error.error, 'danger');
     }
   } catch (error) {
-    alert('Error saving question: ' + error.message);
+    showToast('Error saving question: ' + error.message, 'danger');
   }
 });
 
@@ -85,7 +97,7 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
         modal.show();
       }
     } catch (error) {
-      alert('Error loading question: ' + error.message);
+      showToast('Error loading question: ' + error.message, 'danger');
     }
   });
 });
@@ -105,10 +117,10 @@ document.querySelectorAll('.delete-btn').forEach(btn => {
           location.reload();
         } else {
           const error = await response.json();
-          alert('Error: ' + error.error);
+          showToast('Error: ' + error.error, 'danger');
         }
       } catch (error) {
-        alert('Error deleting question: ' + error.message);
+        showToast('Error deleting question: ' + error.message, 'danger');
       }
     }
   });
@@ -169,11 +181,11 @@ document.querySelectorAll('.question-item').forEach(item => {
         });
 
         if (!response.ok) {
-          alert('Error reordering questions');
+          showToast('Error reordering questions', 'danger');
           location.reload();
         }
       } catch (error) {
-        alert('Error: ' + error.message);
+        showToast('Error: ' + error.message, 'danger');
         location.reload();
       }
     }
