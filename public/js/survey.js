@@ -76,7 +76,8 @@ function validateCurrentStep() {
   // Get value based on input type
   let value = '';
   if (questionType === 'yes_no') {
-    value = input.querySelector('sl-radio[checked]')?.value || '';
+    // Check for selected radio using Shoelace's value property
+    value = input.value || '';
   } else {
     value = input.value?.trim() || '';
   }
@@ -153,7 +154,8 @@ surveyForm?.addEventListener('submit', async (e) => {
 
     let answer = '';
     if (questionType === 'yes_no') {
-      answer = input.querySelector('sl-radio[checked]')?.value || '';
+      // Use Shoelace's value property for radio groups
+      answer = input.value || '';
     } else {
       answer = input.value?.trim() || '';
     }
@@ -187,20 +189,7 @@ surveyForm?.addEventListener('submit', async (e) => {
   }
 });
 
-// Handle radio button selection for yes/no questions
-document.querySelectorAll('sl-radio-group').forEach(group => {
-  group.addEventListener('sl-change', (e) => {
-    // Mark the selected radio as checked
-    const radios = group.querySelectorAll('sl-radio');
-    radios.forEach(radio => {
-      if (radio.value === e.target.value) {
-        radio.setAttribute('checked', '');
-      } else {
-        radio.removeAttribute('checked');
-      }
-    });
-  });
-});
+// No longer needed - Shoelace radio groups handle their own state
 
 // Initialize
 if (totalSteps > 0) {
