@@ -101,6 +101,17 @@ prevBtn?.addEventListener('click', () => {
   showStep(currentStep);
 });
 
+// Prevent Enter key from submitting form (except on last step)
+surveyForm?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && currentStep < totalSteps) {
+    e.preventDefault();
+    if (validateCurrentStep()) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+});
+
 // Form submission
 surveyForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
