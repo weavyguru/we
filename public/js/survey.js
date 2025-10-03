@@ -47,9 +47,13 @@ function showStep(step) {
 // Validate current step
 function validateCurrentStep() {
   const currentStepEl = document.querySelector(`.question-step:not(.hidden)`);
+  const questionType = currentStepEl.dataset.type;
+
+  // Splash screens don't need validation
+  if (questionType === 'splash') return true;
+
   const input = currentStepEl.querySelector('.survey-input');
   const isRequired = currentStepEl.dataset.required === 'true';
-  const questionType = currentStepEl.dataset.type;
 
   if (!isRequired) return true;
 
@@ -125,6 +129,10 @@ surveyForm?.addEventListener('submit', async (e) => {
   steps.forEach(step => {
     const questionId = step.dataset.id;
     const questionType = step.dataset.type;
+
+    // Skip splash screens - they don't have answers
+    if (questionType === 'splash') return;
+
     const input = step.querySelector('.survey-input');
 
     let answer = '';

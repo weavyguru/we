@@ -32,12 +32,23 @@
           <% questions.forEach((question, index) => { %>
             <div class="question-step <%= index === 0 ? '' : 'hidden' %>" data-step="<%= index + 1 %>" data-id="<%= question._id %>" data-type="<%= question.type %>" data-required="<%= question.required %>">
 
-              <h2 class="text-2xl font-semibold text-gray-900 mb-2"><%= question.questionText %></h2>
-              <% if (question.body) { %>
-                <p class="text-gray-600 mb-6"><%= question.body %></p>
+              <% if (question.type === 'splash') { %>
+                <!-- Splash Screen - Centered Content -->
+                <div class="text-center py-12">
+                  <h2 class="text-4xl font-bold text-gray-900 mb-4"><%= question.questionText %></h2>
+                  <% if (question.body) { %>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto"><%= question.body %></p>
+                  <% } %>
+                </div>
+
               <% } else { %>
-                <div class="mb-6"></div>
-              <% } %>
+                <!-- Regular Question -->
+                <h2 class="text-2xl font-semibold text-gray-900 mb-2"><%= question.questionText %></h2>
+                <% if (question.body) { %>
+                  <p class="text-gray-600 mb-6"><%= question.body %></p>
+                <% } else { %>
+                  <div class="mb-6"></div>
+                <% } %>
 
               <% if (question.type === 'yes_no') { %>
                 <sl-radio-group name="question_<%= question._id %>" class="survey-input" <%= question.required ? 'required' : '' %>>
@@ -84,6 +95,7 @@
 
               <% if (question.required) { %>
                 <p class="text-sm text-gray-500 mt-2">* Required</p>
+              <% } %>
               <% } %>
             </div>
           <% }) %>

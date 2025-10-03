@@ -13,7 +13,7 @@ const questionSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['yes_no', 'email', 'url', 'textarea', 'text'],
+    enum: ['splash', 'yes_no', 'email', 'url', 'textarea', 'text'],
     required: true
   },
   order: {
