@@ -1,0 +1,119 @@
+<div class="min-h-screen bg-gray-50 py-12">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Share Your Idea</h1>
+        <p class="text-lg text-gray-600">We're excited to learn about your vision. Take a few moments to answer these questions.</p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-gray-700">Progress</span>
+          <span class="text-sm font-medium text-gray-700"><span id="currentStep">1</span> / <span id="totalSteps"><%= questions.length %></span></span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div id="progressBar" class="gradient-bg h-2 rounded-full transition-all duration-300" style="width: <%= questions.length > 0 ? (100 / questions.length) : 0 %>%"></div>
+        </div>
+      </div>
+
+      <!-- Survey Form -->
+      <% if (questions.length === 0) { %>
+        <div class="bg-white rounded-lg shadow-md p-12 text-center">
+          <i class="fas fa-clipboard-list text-6xl text-gray-300 mb-4"></i>
+          <p class="text-gray-500 text-lg">No survey questions available yet.</p>
+        </div>
+      <% } else { %>
+        <form id="surveyForm" class="bg-white rounded-lg shadow-md p-8">
+          <input type="hidden" id="totalQuestions" value="<%= questions.length %>">
+
+          <% questions.forEach((question, index) => { %>
+            <div class="question-step <%= index === 0 ? '' : 'hidden' %>" data-step="<%= index + 1 %>" data-id="<%= question._id %>" data-type="<%= question.type %>" data-required="<%= question.required %>">
+
+              <h2 class="text-2xl font-semibold text-gray-900 mb-2"><%= question.questionText %></h2>
+              <% if (question.body) { %>
+                <p class="text-gray-600 mb-6"><%= question.body %></p>
+              <% } else { %>
+                <div class="mb-6"></div>
+              <% } %>
+
+              <% if (question.type === 'yes_no') { %>
+                <sl-radio-group name="question_<%= question._id %>" class="survey-input" <%= question.required ? 'required' : '' %>>
+                  <sl-radio value="yes">Yes</sl-radio>
+                  <sl-radio value="no">No</sl-radio>
+                </sl-radio-group>
+
+              <% } else if (question.type === 'text') { %>
+                <sl-input
+                  type="text"
+                  name="question_<%= question._id %>"
+                  placeholder="Type your answer..."
+                  class="survey-input"
+                  <%= question.required ? 'required' : '' %>
+                ></sl-input>
+
+              <% } else if (question.type === 'email') { %>
+                <sl-input
+                  type="email"
+                  name="question_<%= question._id %>"
+                  placeholder="your@email.com"
+                  class="survey-input"
+                  <%= question.required ? 'required' : '' %>
+                ></sl-input>
+
+              <% } else if (question.type === 'url') { %>
+                <sl-input
+                  type="url"
+                  name="question_<%= question._id %>"
+                  placeholder="https://example.com"
+                  class="survey-input"
+                  <%= question.required ? 'required' : '' %>
+                ></sl-input>
+
+              <% } else if (question.type === 'textarea') { %>
+                <sl-textarea
+                  name="question_<%= question._id %>"
+                  placeholder="Type your answer here..."
+                  rows="6"
+                  class="survey-input"
+                  <%= question.required ? 'required' : '' %>
+                ></sl-textarea>
+              <% } %>
+
+              <% if (question.required) { %>
+                <p class="text-sm text-gray-500 mt-2">* Required</p>
+              <% } %>
+            </div>
+          <% }) %>
+
+          <!-- Navigation Buttons -->
+          <div class="flex justify-between mt-8">
+            <button type="button" id="prevBtn" class="bg-gray-200 text-gray-700 px-6 py-3 rounded hover:bg-gray-300 transition hidden">
+              <i class="fas fa-arrow-left mr-2"></i> Previous
+            </button>
+            <button type="button" id="nextBtn" class="gradient-bg text-white px-6 py-3 rounded hover:opacity-90 transition ml-auto">
+              Next <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button type="submit" id="submitBtn" class="gradient-bg text-white px-6 py-3 rounded hover:opacity-90 transition ml-auto hidden">
+              Submit <i class="fas fa-check ml-2"></i>
+            </button>
+          </div>
+        </form>
+
+        <!-- Success Message (hidden initially) -->
+        <div id="successMessage" class="bg-white rounded-lg shadow-md p-12 text-center hidden">
+          <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Thank You!</h2>
+          <p class="text-lg text-gray-600 mb-6">Your responses have been submitted successfully. We'll review your idea and get back to you soon.</p>
+          <a href="/" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition inline-block">
+            Back to Home
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<script src="/js/survey.js"></script>

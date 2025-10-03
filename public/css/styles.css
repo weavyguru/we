@@ -1,0 +1,61 @@
+/* Custom Styles for We Ventures */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F97316 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+#services .icon-circle {
+  margin: 0 0 1rem 0;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* FAQ Details Styling */
+sl-details::part(base) {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+sl-details::part(header) {
+  padding: 1rem 1.5rem;
+}
+
+sl-details::part(content) {
+  padding: 0 1.5rem 1rem 1.5rem;
+}

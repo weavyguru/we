@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Shoelace -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.12.0/cdn/shoelace-autoloader.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://kit.fontawesome.com/a48f46da4f.css" crossorigin="anonymous">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-purple': '#8B5CF6',
+            'brand-pink': '#EC4899',
+            'brand-orange': '#F97316',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans antialiased">
+  <%- include('../partials/header') %>
+
+  <main>
+    <%- body %>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>
