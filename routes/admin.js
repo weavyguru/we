@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Question = require('../models/Question');
+const Response = require('../models/Response');
 
 // Admin Dashboard
 router.get('/', async (req, res) => {
@@ -109,6 +110,24 @@ router.delete('/questions/:id', async (req, res) => {
     res.json({ message: 'Question deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+// View submissions
+router.get('/submissions', async (req, res) => {
+  try {
+    const responses = await Response.find()
+      .populate('answers.questionId')
+      .sort({ completedAt: -1 });
+
+    res.render('admin/submissions', {
+      title: 'Survey Submissions',
+      responses,
+      layout: 'layouts/main'
+    });
+  } catch (error) {
+    console.error('Submissions error:', error);
+    res.status(500).send('Server Error: ' + error.message);
   }
 });
 

@@ -21,6 +21,11 @@ mongoose.connect(MONGODB_URI)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Disable view caching in development
+if (process.env.NODE_ENV !== 'production') {
+  app.set('view cache', false);
+}
+
 // Set up express-ejs-layouts
 app.use(expressLayouts);
 app.set('layout', 'layouts/main');
@@ -44,7 +49,7 @@ app.get('/faq', (req, res) => {
   res.render('faq', { title: 'FAQ - We Venture Studio' });
 });
 
-app.use('/admin', adminRoutes);
+app.use('/admin/survey', adminRoutes);
 app.use('/survey', surveyRoutes);
 
 app.listen(PORT, () => {
