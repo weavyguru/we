@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection
-const MONGODB_URI = 'mongodb+srv://we_admin:QWMQpwytIM3hnsuz@weavy.ydtz90f.mongodb.net/we';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://we_admin:QWMQpwytIM3hnsuz@weavy.ydtz90f.mongodb.net/we';
 
 mongoose.connect(MONGODB_URI)
   .then(() => {
