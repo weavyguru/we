@@ -27,6 +27,26 @@ router.get('/questions', async (req, res) => {
   }
 });
 
+// Reorder questions (MUST be before /:id routes)
+router.put('/questions/reorder', async (req, res) => {
+  try {
+    const { questions } = req.body; // Array of { id, order }
+
+    const bulkOps = questions.map(q => ({
+      updateOne: {
+        filter: { _id: q.id },
+        update: { order: q.order }
+      }
+    }));
+
+    await Question.bulkWrite(bulkOps);
+    res.json({ message: 'Questions reordered successfully' });
+  } catch (error) {
+    console.error('Reorder error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Create question
 router.post('/questions', async (req, res) => {
   try {
@@ -87,25 +107,6 @@ router.delete('/questions/:id', async (req, res) => {
     );
 
     res.json({ message: 'Question deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Reorder questions
-router.put('/questions/reorder', async (req, res) => {
-  try {
-    const { questions } = req.body; // Array of { id, order }
-
-    const bulkOps = questions.map(q => ({
-      updateOne: {
-        filter: { _id: q.id },
-        update: { order: q.order }
-      }
-    }));
-
-    await Question.bulkWrite(bulkOps);
-    res.json({ message: 'Questions reordered successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
