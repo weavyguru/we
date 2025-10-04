@@ -50,24 +50,27 @@ app.use((req, res, next) => {
 const adminRoutes = require('./routes/admin');
 const surveyRoutes = require('./routes/survey');
 const { translateText } = require('./services/translation');
-const { translatePageStrings, homePageStrings, faqPageStrings, headerStrings } = require('./helpers/pageTranslations');
+const { translatePageStrings, homePageStrings, faqPageStrings, headerStrings, footerStrings } = require('./helpers/pageTranslations');
 
 app.get('/', async (req, res) => {
   const lang = res.locals.lang;
-  const title = await translateText('We - Turning Ideas into Ventures Together', lang);
+  const titleSuffix = await translateText('Turning Ideas into Ventures Together', lang);
+  const title = `We - ${titleSuffix}`;
   const t = await translatePageStrings(homePageStrings, lang);
   const h = await translatePageStrings(headerStrings, lang);
+  const f = await translatePageStrings(footerStrings, lang);
 
-  res.render('index', { title, lang, t, h });
+  res.render('index', { title, lang, t, h, f });
 });
 
 app.get('/faq', async (req, res) => {
   const lang = res.locals.lang;
-  const title = await translateText('FAQ - We Venture Studio', lang);
+  const title = lang === 'en' ? 'FAQ - We Venture Studio' : `FAQ - We Venture Studio`;
   const t = await translatePageStrings(faqPageStrings, lang);
   const h = await translatePageStrings(headerStrings, lang);
+  const f = await translatePageStrings(footerStrings, lang);
 
-  res.render('faq', { title, lang, t, h });
+  res.render('faq', { title, lang, t, h, f });
 });
 
 app.use('/admin/survey', adminRoutes);

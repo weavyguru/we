@@ -215,10 +215,29 @@ const headerStrings = {
   nav_cta: 'Partner with Us'
 };
 
+// Footer strings (shared across all pages)
+const footerStrings = {
+  tagline: 'Turning ideas into ventures, together. We partner with intrapreneurs to build successful micro-SaaS ventures.',
+  process_title: 'Process',
+  process_approach: 'Our Approach',
+  process_services: 'Services',
+  process_partnership: 'Partnership',
+  company_title: 'Company',
+  company_about: 'About',
+  company_faq: 'FAQ',
+  company_contact: 'Contact',
+  company_cases: 'Case Studies',
+  legal_title: 'Legal',
+  legal_privacy: 'Privacy Policy',
+  legal_terms: 'Terms of Service',
+  copyright: '2025 We Venture Studio. All rights reserved.'
+};
+
 module.exports = {
   translatePageStrings,
   homePageStrings,
   faqPageStrings,
   surveyPageStrings,
-  headerStrings
+  headerStrings,
+  footerStrings
 };

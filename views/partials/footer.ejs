@@ -7,44 +7,44 @@
           <img src="/images/we-white.png" alt="we" class="h-8">
         </div>
         <p class="text-gray-400 text-sm">
-          Turning ideas into ventures, together. We partner with intrapreneurs to build successful micro-SaaS ventures.
+          <%= f.tagline %>
         </p>
       </div>
 
       <!-- Process Links -->
       <div>
-        <h4 class="font-semibold mb-4">Process</h4>
+        <h4 class="font-semibold mb-4"><%= f.process_title %></h4>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="#process" class="hover:text-white transition">Our Approach</a></li>
-          <li><a href="#services" class="hover:text-white transition">Services</a></li>
-          <li><a href="#" class="hover:text-white transition">Partnership</a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#process" class="hover:text-white transition"><%= f.process_approach %></a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#services" class="hover:text-white transition"><%= f.process_services %></a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.process_partnership %></a></li>
         </ul>
       </div>
 
       <!-- Company Links -->
       <div>
-        <h4 class="font-semibold mb-4">Company</h4>
+        <h4 class="font-semibold mb-4"><%= f.company_title %></h4>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="#about" class="hover:text-white transition">About</a></li>
-          <li><a href="/faq" class="hover:text-white transition">FAQ</a></li>
-          <li><a href="#" class="hover:text-white transition">Contact</a></li>
-          <li><a href="#" class="hover:text-white transition">Case Studies</a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#about" class="hover:text-white transition"><%= f.company_about %></a></li>
+          <li><a href="/faq<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="hover:text-white transition"><%= f.company_faq %></a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.company_contact %></a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.company_cases %></a></li>
         </ul>
       </div>
 
       <!-- Legal Links -->
       <div>
-        <h4 class="font-semibold mb-4">Legal</h4>
+        <h4 class="font-semibold mb-4"><%= f.legal_title %></h4>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.legal_privacy %></a></li>
+          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.legal_terms %></a></li>
         </ul>
       </div>
     </div>
 
     <!-- Bottom Bar -->
     <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-      <p>&copy; 2025 We Venture Studio. All rights reserved.</p>
+      <p>&copy; <%= f.copyright %></p>
     </div>
   </div>
 </footer>

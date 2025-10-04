@@ -4,7 +4,7 @@ const Question = require('../models/Question');
 const Response = require('../models/Response');
 const { v4: uuidv4 } = require('uuid');
 const { translateText, translateBatch } = require('../services/translation');
-const { translatePageStrings, surveyPageStrings, headerStrings } = require('../helpers/pageTranslations');
+const { translatePageStrings, surveyPageStrings, headerStrings, footerStrings } = require('../helpers/pageTranslations');
 
 // Display survey
 router.get('/', async (req, res) => {
@@ -34,16 +34,19 @@ router.get('/', async (req, res) => {
       });
     }
 
-    const title = await translateText('Share Your Idea - We Venture Studio', lang);
+    const titleSuffix = await translateText('Share Your Idea', lang);
+    const title = `${titleSuffix} - We Venture Studio`;
     const t = await translatePageStrings(surveyPageStrings, lang);
     const h = await translatePageStrings(headerStrings, lang);
+    const f = await translatePageStrings(footerStrings, lang);
 
     res.render('survey/index', {
       title,
       questions,
       lang,
       t,
-      h
+      h,
+      f
     });
   } catch (error) {
     res.status(500).send('Server Error');
