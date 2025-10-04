@@ -11,7 +11,7 @@
   </p>
 
   <div class="flex justify-center">
-    <a href="/survey<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition flex items-center gap-2">
+    <a href="/<%= lang !== 'en' ? lang + '/' : '' %>survey" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition flex items-center gap-2">
       <%= t.hero_cta %>
       <i class="fas fa-arrow-right"></i>
     </a>
@@ -283,7 +283,7 @@
       </div>
 
       <div class="text-center">
-        <a href="/survey<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="gradient-bg text-white px-10 py-4 rounded text-lg hover:opacity-90 transition inline-block">
+        <a href="/<%= lang !== 'en' ? lang + '/' : '' %>survey" class="gradient-bg text-white px-10 py-4 rounded text-lg hover:opacity-90 transition inline-block">
           <%= t.cta_button %>
         </a>
       </div>

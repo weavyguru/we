@@ -2,36 +2,57 @@
   <nav class="container mx-auto px-6 py-4">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="flex items-center">
+      <a href="/<%= lang === 'en' ? '' : lang %>" class="flex items-center">
         <img src="/images/we.png" alt="we" class="h-8">
       </a>
 
       <!-- Navigation Links -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#about" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_about %></a>
-        <a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#process" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_process %></a>
-        <a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#services" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_services %></a>
-        <a href="/faq<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_faq %></a>
-        <a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#contact" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_contact %></a>
+        <a href="/<%= lang !== 'en' ? lang : '' %>#about" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_about %></a>
+        <a href="/<%= lang !== 'en' ? lang : '' %>#process" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_process %></a>
+        <a href="/<%= lang !== 'en' ? lang : '' %>#services" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_services %></a>
+        <a href="/<%= lang !== 'en' ? lang + '/' : '' %>faq" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_faq %></a>
+        <a href="/<%= lang !== 'en' ? lang : '' %>#contact" class="text-gray-600 hover:text-gray-900 transition"><%= h.nav_contact %></a>
       </div>
 
       <!-- Language Switcher & CTA -->
       <div class="hidden md:flex items-center space-x-4">
         <div class="flex items-center space-x-2 border-r pr-4">
-          <a href="?"
-             class="<%= lang === 'en' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900' %> transition text-sm font-medium">
-            EN
-          </a>
-          <span class="text-gray-400">|</span>
-          <a href="?lang=sv"
-             class="<%= lang === 'sv' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900' %> transition text-sm font-medium">
-            SV
-          </a>
+          <span class="text-sm font-medium text-gray-600">EN</span>
+          <sl-switch id="langSwitch" <%= lang === 'sv' ? 'checked' : '' %>></sl-switch>
+          <span class="text-sm font-medium text-gray-600">SV</span>
         </div>
-        <a href="/survey<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="gradient-bg text-white px-6 py-2 rounded hover:opacity-90 transition inline-block">
+        <a href="/<%= lang !== 'en' ? lang + '/' : '' %>survey" class="gradient-bg text-white px-6 py-2 rounded hover:opacity-90 transition inline-block">
           <%= h.nav_cta %>
         </a>
       </div>
+
+      <script>
+        document.getElementById('langSwitch').addEventListener('sl-change', (e) => {
+          const currentPath = window.location.pathname;
+          let newPath;
+
+          if (e.target.checked) {
+            // Switch to Swedish
+            if (currentPath === '/' || currentPath === '') {
+              newPath = '/sv';
+            } else if (currentPath.startsWith('/sv')) {
+              newPath = currentPath; // Already Swedish
+            } else {
+              newPath = '/sv' + currentPath;
+            }
+          } else {
+            // Switch to English
+            if (currentPath.startsWith('/sv')) {
+              newPath = currentPath.replace(/^\/sv/, '') || '/';
+            } else {
+              newPath = currentPath;
+            }
+          }
+
+          window.location.href = newPath + window.location.hash;
+        });
+      </script>
 
       <!-- Mobile Menu Button -->
       <div class="md:hidden">

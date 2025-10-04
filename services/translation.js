@@ -40,6 +40,57 @@ class LRUCache {
 // Create cache instance
 const translationCache = new LRUCache(1000);
 
+// Custom translation glossary - forces specific translations for certain terms
+const glossary = {
+  sv: {
+    'pain point': 'problem',
+    'pain points': 'problem',
+    'Pain point': 'Problem',
+    'Pain points': 'Problem',
+    'track record': 'framgång',
+    'Track record': 'Framgång',
+    'Track Record': 'Framgång',
+    'Battle-test': 'Beprövad',
+    'battle-test': 'beprövad'
+  },
+  no: {
+    'pain point': 'problem',
+    'pain points': 'problemer',
+    'Pain point': 'Problem',
+    'Pain points': 'Problemer'
+  },
+  da: {
+    'pain point': 'problem',
+    'pain points': 'problemer',
+    'Pain point': 'Problem',
+    'Pain points': 'Problemer'
+  },
+  fi: {
+    'pain point': 'ongelma',
+    'pain points': 'ongelmat',
+    'Pain point': 'Ongelma',
+    'Pain points': 'Ongelmat'
+  }
+};
+
+/**
+ * Apply glossary replacements to text before translation
+ * @param {string} text - Text to process
+ * @param {string} targetLang - Target language code
+ * @returns {string} - Text with glossary terms replaced
+ */
+function applyGlossary(text, targetLang) {
+  if (!glossary[targetLang]) return text;
+
+  let result = text;
+  for (const [source, target] of Object.entries(glossary[targetLang])) {
+    // Use word boundary regex for more precise matching
+    const regex = new RegExp(`\\b${source}\\b`, 'g');
+    result = result.replace(regex, target);
+  }
+  return result;
+}
+
 /**
  * Translate text from English to target language using Claude Haiku
  * @param {string} text - Text to translate
@@ -69,12 +120,15 @@ async function translateText(text, targetLang = 'sv') {
 
     const targetLanguage = languageNames[targetLang] || 'Swedish';
 
+    // Apply glossary replacements before translation
+    const textToTranslate = applyGlossary(text, targetLang);
+
     const message = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
       max_tokens: 1024,
       messages: [{
         role: 'user',
-        content: `Translate the following English text to ${targetLanguage}. Return ONLY the translation, no explanations or additional text:\n\n${text}`
+        content: `Translate the following English text to ${targetLanguage}. Return ONLY the translation, no explanations or additional text:\n\n${textToTranslate}`
       }]
     });
 
@@ -129,8 +183,11 @@ async function translateBatch(texts, targetLang = 'sv') {
 
     const targetLanguage = languageNames[targetLang] || 'Swedish';
 
+    // Apply glossary replacements to all texts before translation
+    const textsToTranslate = toTranslate.map(text => applyGlossary(text, targetLang));
+
     // Create numbered list for translation
-    const numberedTexts = toTranslate.map((text, i) => `${i + 1}. ${text}`).join('\n');
+    const numberedTexts = textsToTranslate.map((text, i) => `${i + 1}. ${text}`).join('\n');
 
     const message = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',

@@ -15,9 +15,9 @@
       <div>
         <h4 class="font-semibold mb-4"><%= f.process_title %></h4>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#process" class="hover:text-white transition"><%= f.process_approach %></a></li>
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#services" class="hover:text-white transition"><%= f.process_services %></a></li>
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.process_partnership %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#process" class="hover:text-white transition"><%= f.process_approach %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#services" class="hover:text-white transition"><%= f.process_services %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#" class="hover:text-white transition"><%= f.process_partnership %></a></li>
         </ul>
       </div>
 
@@ -25,10 +25,10 @@
       <div>
         <h4 class="font-semibold mb-4"><%= f.company_title %></h4>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#about" class="hover:text-white transition"><%= f.company_about %></a></li>
-          <li><a href="/faq<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="hover:text-white transition"><%= f.company_faq %></a></li>
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.company_contact %></a></li>
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.company_cases %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#about" class="hover:text-white transition"><%= f.company_about %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang + '/' : '' %>faq" class="hover:text-white transition"><%= f.company_faq %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#" class="hover:text-white transition"><%= f.company_contact %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#" class="hover:text-white transition"><%= f.company_cases %></a></li>
         </ul>
       </div>
 
@@ -36,8 +36,8 @@
       <div>
         <h4 class="font-semibold mb-4"><%= f.legal_title %></h4>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.legal_privacy %></a></li>
-          <li><a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>#" class="hover:text-white transition"><%= f.legal_terms %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#" class="hover:text-white transition"><%= f.legal_privacy %></a></li>
+          <li><a href="/<%= lang !== 'en' ? lang : '' %>#" class="hover:text-white transition"><%= f.legal_terms %></a></li>
         </ul>
       </div>
     </div>

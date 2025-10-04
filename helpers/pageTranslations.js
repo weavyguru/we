@@ -83,7 +83,7 @@ const homePageStrings = {
   cta_subtitle: "If you've identified a real pain point and are ready to build something together, let's talk.",
   cta_what_you_get: 'What You Get:',
   cta_benefit1: 'No upfront costs',
-  cta_benefit2: 'Retain significant equity in your venture',
+  cta_benefit2: 'Retain significant equity in the venture',
   cta_benefit3: 'Experienced team with proven track record',
   cta_benefit4: 'End-to-end support from idea to exit',
   cta_are_you_ready: 'Are You Ready?',

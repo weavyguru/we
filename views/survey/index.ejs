@@ -119,7 +119,7 @@
           <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
           <h2 class="text-3xl font-bold text-gray-900 mb-4"><%= t.success_title %></h2>
           <p class="text-lg text-gray-600 mb-6"><%= t.success_message %></p>
-          <a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition inline-block">
+          <a href="/<%= lang !== 'en' ? lang : '' %>" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition inline-block">
             <%= t.back_home %>
           </a>
         </div>
