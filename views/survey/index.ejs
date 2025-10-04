@@ -4,14 +4,14 @@
 
       <!-- Header -->
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Share Your Idea</h1>
-        <p class="text-lg text-gray-600">We're excited to learn about your vision. Take a few moments to answer these questions.</p>
+        <h1 class="text-4xl font-bold text-gray-900 mb-4"><%= t.page_title %></h1>
+        <p class="text-lg text-gray-600"><%= t.page_subtitle %></p>
       </div>
 
       <!-- Progress Bar -->
       <div class="mb-8">
         <div class="flex items-center justify-between mb-2">
-          <span class="text-sm font-medium text-gray-700">Progress</span>
+          <span class="text-sm font-medium text-gray-700"><%= t.progress %></span>
           <span class="text-sm font-medium text-gray-700"><span id="currentStep">1</span> / <span id="totalSteps"><%= questions.length %></span></span>
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2">
@@ -23,7 +23,7 @@
       <% if (questions.length === 0) { %>
         <div class="bg-white rounded-lg shadow-md p-12 text-center">
           <i class="fas fa-clipboard-list text-6xl text-gray-300 mb-4"></i>
-          <p class="text-gray-500 text-lg">No survey questions available yet.</p>
+          <p class="text-gray-500 text-lg"><%= t.no_questions %></p>
         </div>
       <% } else { %>
         <form id="surveyForm" class="bg-white rounded-lg shadow-md p-8">
@@ -52,15 +52,15 @@
 
               <% if (question.type === 'yes_no') { %>
                 <sl-radio-group name="question_<%= question._id %>" class="survey-input" <%= question.required ? 'required' : '' %>>
-                  <sl-radio value="yes">Yes</sl-radio>
-                  <sl-radio value="no">No</sl-radio>
+                  <sl-radio value="yes"><%= t.yes %></sl-radio>
+                  <sl-radio value="no"><%= t.no %></sl-radio>
                 </sl-radio-group>
 
               <% } else if (question.type === 'text') { %>
                 <sl-input
                   type="text"
                   name="question_<%= question._id %>"
-                  placeholder="Type your answer..."
+                  placeholder="<%= t.placeholder_text %>"
                   class="survey-input"
                   <%= question.required ? 'required' : '' %>
                 ></sl-input>
@@ -69,7 +69,7 @@
                 <sl-input
                   type="email"
                   name="question_<%= question._id %>"
-                  placeholder="your@email.com"
+                  placeholder="<%= t.placeholder_email %>"
                   class="survey-input"
                   <%= question.required ? 'required' : '' %>
                 ></sl-input>
@@ -78,7 +78,7 @@
                 <sl-input
                   type="url"
                   name="question_<%= question._id %>"
-                  placeholder="https://example.com"
+                  placeholder="<%= t.placeholder_url %>"
                   class="survey-input"
                   <%= question.required ? 'required' : '' %>
                 ></sl-input>
@@ -86,7 +86,7 @@
               <% } else if (question.type === 'textarea') { %>
                 <sl-textarea
                   name="question_<%= question._id %>"
-                  placeholder="Type your answer here..."
+                  placeholder="<%= t.placeholder_textarea %>"
                   rows="6"
                   class="survey-input"
                   <%= question.required ? 'required' : '' %>
@@ -94,7 +94,7 @@
               <% } %>
 
               <% if (question.required) { %>
-                <p class="text-sm text-gray-500 mt-2">* Required</p>
+                <p class="text-sm text-gray-500 mt-2"><%= t.required %></p>
               <% } %>
               <% } %>
             </div>
@@ -103,13 +103,13 @@
           <!-- Navigation Buttons -->
           <div class="flex justify-between mt-8">
             <button type="button" id="prevBtn" class="bg-gray-200 text-gray-700 px-6 py-3 rounded hover:bg-gray-300 transition hidden">
-              <i class="fas fa-arrow-left mr-2"></i> Previous
+              <i class="fas fa-arrow-left mr-2"></i> <%= t.prev_button %>
             </button>
             <button type="button" id="nextBtn" class="gradient-bg text-white px-6 py-3 rounded hover:opacity-90 transition ml-auto">
-              Next <i class="fas fa-arrow-right ml-2"></i>
+              <%= t.next_button %> <i class="fas fa-arrow-right ml-2"></i>
             </button>
             <button type="submit" id="submitBtn" class="gradient-bg text-white px-6 py-3 rounded hover:opacity-90 transition ml-auto hidden">
-              Submit <i class="fas fa-check ml-2"></i>
+              <%= t.submit_button %> <i class="fas fa-check ml-2"></i>
             </button>
           </div>
         </form>
@@ -117,10 +117,10 @@
         <!-- Success Message (hidden initially) -->
         <div id="successMessage" class="bg-white rounded-lg shadow-md p-12 text-center hidden">
           <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Thank You!</h2>
-          <p class="text-lg text-gray-600 mb-6">Your responses have been submitted successfully. We'll review your idea and get back to you soon.</p>
-          <a href="/" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition inline-block">
-            Back to Home
+          <h2 class="text-3xl font-bold text-gray-900 mb-4"><%= t.success_title %></h2>
+          <p class="text-lg text-gray-600 mb-6"><%= t.success_message %></p>
+          <a href="/<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition inline-block">
+            <%= t.back_home %>
           </a>
         </div>
       <% } %>

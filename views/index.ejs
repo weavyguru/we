@@ -1,18 +1,18 @@
 <!-- Hero Section -->
 <section class="container mx-auto px-6 py-20 text-center">
   <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-    Turning Ideas into Ventures
+    <%= t.hero_title %>
     <br>
-    <span class="gradient-text">together</span>
+    <span class="gradient-text"><%= t.hero_together %></span>
   </h1>
 
   <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-    We partner with intrapreneurs who've identified real pain points. Together, we build micro-SaaS solutions with extreme speed, scale to $20-50k MRR, and create successful exits.
+    <%= t.hero_subtitle %>
   </p>
 
   <div class="flex justify-center">
-    <a href="/survey" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition flex items-center gap-2">
-      Start Building Together
+    <a href="/survey<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="gradient-bg text-white px-8 py-3 rounded hover:opacity-90 transition flex items-center gap-2">
+      <%= t.hero_cta %>
       <i class="fas fa-arrow-right"></i>
     </a>
   </div>
@@ -26,8 +26,8 @@
       <div class="icon-circle bg-purple-100">
         <i class="fas fa-bolt text-purple-600 text-2xl"></i>
       </div>
-      <h3 class="text-xl font-semibold mb-2">Extreme Speed</h3>
-      <p class="text-gray-600">From idea to launch in weeks, not months</p>
+      <h3 class="text-xl font-semibold mb-2"><%= t.feature1_title %></h3>
+      <p class="text-gray-600"><%= t.feature1_desc %></p>
     </div>
 
     <!-- Proven Process -->
@@ -35,8 +35,8 @@
       <div class="icon-circle bg-orange-100">
         <i class="fas fa-cog text-orange-500 text-2xl"></i>
       </div>
-      <h3 class="text-xl font-semibold mb-2">Proven Process</h3>
-      <p class="text-gray-600">Battle-tested methodology for micro-SaaS success</p>
+      <h3 class="text-xl font-semibold mb-2"><%= t.feature2_title %></h3>
+      <p class="text-gray-600"><%= t.feature2_desc %></p>
     </div>
 
     <!-- Scale & Exit -->
@@ -44,8 +44,8 @@
       <div class="icon-circle bg-pink-100">
         <i class="fas fa-chart-line text-pink-500 text-2xl"></i>
       </div>
-      <h3 class="text-xl font-semibold mb-2">Scale & Exit</h3>
-      <p class="text-gray-600">$20-50k MRR with clear exit strategies</p>
+      <h3 class="text-xl font-semibold mb-2"><%= t.feature3_title %></h3>
+      <p class="text-gray-600"><%= t.feature3_desc %></p>
     </div>
   </div>
 </section>
@@ -54,9 +54,9 @@
 <section id="process" class="bg-gray-50 py-20">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Proven Process</h2>
+      <h2 class="text-4xl font-bold text-gray-900 mb-4"><%= t.process_title %></h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        From pain point to profitable exit, we've refined our approach to maximize speed and success rates.
+        <%= t.process_subtitle %>
       </p>
     </div>
 
@@ -66,10 +66,10 @@
         <div class="icon-circle bg-purple-100">
           <i class="fas fa-search text-purple-600 text-2xl"></i>
         </div>
-        <div class="text-sm text-purple-600 font-semibold mb-2">Phase 1</div>
-        <h3 class="text-xl font-semibold mb-3">Identify Pain Points</h3>
+        <div class="text-sm text-purple-600 font-semibold mb-2"><%= t.phase1_label %></div>
+        <h3 class="text-xl font-semibold mb-3"><%= t.phase1_title %></h3>
         <p class="text-gray-600 text-sm">
-          We work with intrapreneurs who have already identified real market problems through their industry experience.
+          <%= t.phase1_desc %>
         </p>
       </div>
 
@@ -78,10 +78,10 @@
         <div class="icon-circle bg-purple-100">
           <i class="fas fa-lightbulb text-purple-600 text-2xl"></i>
         </div>
-        <div class="text-sm text-purple-600 font-semibold mb-2">Phase 2</div>
-        <h3 class="text-xl font-semibold mb-3">Rapid Ideation</h3>
+        <div class="text-sm text-purple-600 font-semibold mb-2"><%= t.phase2_label %></div>
+        <h3 class="text-xl font-semibold mb-3"><%= t.phase2_title %></h3>
         <p class="text-gray-600 text-sm">
-          Together, we validate the problem and design a lean micro-SaaS solution that addresses the core pain point.
+          <%= t.phase2_desc %>
         </p>
       </div>
 
@@ -90,10 +90,10 @@
         <div class="icon-circle bg-pink-100">
           <i class="fas fa-rocket text-pink-500 text-2xl"></i>
         </div>
-        <div class="text-sm text-pink-500 font-semibold mb-2">Phase 3</div>
-        <h3 class="text-xl font-semibold mb-3">Build & Launch</h3>
+        <div class="text-sm text-pink-500 font-semibold mb-2"><%= t.phase3_label %></div>
+        <h3 class="text-xl font-semibold mb-3"><%= t.phase3_title %></h3>
         <p class="text-gray-600 text-sm">
-          Our experienced team builds the MVP with extreme speed while you help on market validation and early customers.
+          <%= t.phase3_desc %>
         </p>
       </div>
 
@@ -102,10 +102,10 @@
         <div class="icon-circle bg-orange-100">
           <i class="fas fa-chart-bar text-orange-500 text-2xl"></i>
         </div>
-        <div class="text-sm text-orange-500 font-semibold mb-2">Phase 4</div>
-        <h3 class="text-xl font-semibold mb-3">Scale & Exit</h3>
+        <div class="text-sm text-orange-500 font-semibold mb-2"><%= t.phase4_label %></div>
+        <h3 class="text-xl font-semibold mb-3"><%= t.phase4_title %></h3>
         <p class="text-gray-600 text-sm">
-          We optimize for growth, scale to $20-50k MRR, and prepare for strategic partnerships or acquisition exits.
+          <%= t.phase4_desc %>
         </p>
       </div>
     </div>
@@ -116,9 +116,9 @@
 <section id="services" class="py-20">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 mb-4">End-to-End Partnership</h2>
+      <h2 class="text-4xl font-bold text-gray-900 mb-4"><%= t.partnership_title %></h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Together we build and scale our micro-SaaS venture.
+        <%= t.partnership_subtitle %>
       </p>
     </div>
 
@@ -128,9 +128,9 @@
         <div class="icon-circle bg-purple-100">
           <i class="fas fa-code text-purple-600 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Technical Development</h3>
+        <h3 class="text-xl font-semibold mb-3"><%= t.service1_title %></h3>
         <p class="text-gray-600">
-          Full-stack development with modern technologies, optimized for speed and scalability.
+          <%= t.service1_desc %>
         </p>
       </div>
 
@@ -139,9 +139,9 @@
         <div class="icon-circle bg-purple-100">
           <i class="fas fa-users text-purple-600 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Market Validation</h3>
+        <h3 class="text-xl font-semibold mb-3"><%= t.service2_title %></h3>
         <p class="text-gray-600">
-          Customer discovery, MVP testing, and product-market fit validation before scaling.
+          <%= t.service2_desc %>
         </p>
       </div>
 
@@ -150,9 +150,9 @@
         <div class="icon-circle bg-pink-100">
           <i class="fas fa-chart-line text-pink-500 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Growth Strategy</h3>
+        <h3 class="text-xl font-semibold mb-3"><%= t.service3_title %></h3>
         <p class="text-gray-600">
-          Data-driven growth tactics to reach $30-50k MRR with sustainable unit economics.
+          <%= t.service3_desc %>
         </p>
       </div>
 
@@ -161,9 +161,9 @@
         <div class="icon-circle bg-purple-100">
           <i class="fas fa-shield-alt text-purple-600 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Risk Mitigation</h3>
+        <h3 class="text-xl font-semibold mb-3"><%= t.service4_title %></h3>
         <p class="text-gray-600">
-          Lean startup methodology to minimize risk and maximize learning velocity.
+          <%= t.service4_desc %>
         </p>
       </div>
 
@@ -172,9 +172,9 @@
         <div class="icon-circle bg-orange-100">
           <i class="fas fa-building text-orange-500 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Business Operations</h3>
+        <h3 class="text-xl font-semibold mb-3"><%= t.service5_title %></h3>
         <p class="text-gray-600">
-          Legal structure, financial planning, and operational systems for smooth scaling.
+          <%= t.service5_desc %>
         </p>
       </div>
 
@@ -183,9 +183,9 @@
         <div class="icon-circle bg-pink-100">
           <i class="fas fa-handshake text-pink-500 text-2xl"></i>
         </div>
-        <h3 class="text-xl font-semibold mb-3">Exit Preparation</h3>
+        <h3 class="text-xl font-semibold mb-3"><%= t.service6_title %></h3>
         <p class="text-gray-600">
-          Strategic positioning and preparation for acquisitions or strategic partnerships.
+          <%= t.service6_desc %>
         </p>
       </div>
     </div>
@@ -196,28 +196,28 @@
 <section class="gradient-bg py-20 text-white">
   <div class="container mx-auto px-6">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-4">Proven Track Record</h2>
+      <h2 class="text-4xl font-bold mb-4"><%= t.track_title %></h2>
       <p class="text-lg opacity-90 max-w-2xl mx-auto">
-        Our results speak for themselves. We've helped dozens of intrapreneurs turn their ideas into successful ventures.
+        <%= t.track_subtitle %>
       </p>
     </div>
 
     <div class="grid md:grid-cols-4 gap-8 text-center">
       <div>
-        <div class="text-5xl font-bold mb-2">8 weeks</div>
-        <div class="text-lg opacity-90">Average time to launch</div>
+        <div class="text-5xl font-bold mb-2"><%= t.track1_value %></div>
+        <div class="text-lg opacity-90"><%= t.track1_label %></div>
       </div>
       <div>
-        <div class="text-5xl font-bold mb-2">$35k</div>
-        <div class="text-lg opacity-90">Average MRR at exit</div>
+        <div class="text-5xl font-bold mb-2"><%= t.track2_value %></div>
+        <div class="text-lg opacity-90"><%= t.track2_label %></div>
       </div>
       <div>
-        <div class="text-5xl font-bold mb-2">85%</div>
-        <div class="text-lg opacity-90">Success rate to profitability</div>
+        <div class="text-5xl font-bold mb-2"><%= t.track3_value %></div>
+        <div class="text-lg opacity-90"><%= t.track3_label %></div>
       </div>
       <div>
-        <div class="text-5xl font-bold mb-2">12 months</div>
-        <div class="text-lg opacity-90">Average time to exit</div>
+        <div class="text-5xl font-bold mb-2"><%= t.track4_value %></div>
+        <div class="text-lg opacity-90"><%= t.track4_label %></div>
       </div>
     </div>
   </div>
@@ -228,63 +228,63 @@
   <div class="container mx-auto px-6">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">Ready to Turn Your Idea into a Venture?</h2>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4"><%= t.cta_title %></h2>
         <p class="text-lg text-gray-600">
-          If you've identified a real pain point and are ready to build something together, let's talk.
+          <%= t.cta_subtitle %>
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 mb-8">
         <!-- What You Get -->
         <div class="bg-white p-8 rounded-xl">
-          <h3 class="text-xl font-semibold mb-4">What You Get:</h3>
+          <h3 class="text-xl font-semibold mb-4"><%= t.cta_what_you_get %></h3>
           <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-green-500 mt-1"></i>
-              <span class="text-gray-700">No upfront costs</span>
+              <span class="text-gray-700"><%= t.cta_benefit1 %></span>
             </li>
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-green-500 mt-1"></i>
-              <span class="text-gray-700">Retain significant equity in your venture</span>
+              <span class="text-gray-700"><%= t.cta_benefit2 %></span>
             </li>
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-green-500 mt-1"></i>
-              <span class="text-gray-700">Experienced team with proven track record</span>
+              <span class="text-gray-700"><%= t.cta_benefit3 %></span>
             </li>
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-green-500 mt-1"></i>
-              <span class="text-gray-700">End-to-end support from idea to exit</span>
+              <span class="text-gray-700"><%= t.cta_benefit4 %></span>
             </li>
           </ul>
         </div>
 
         <!-- Are You Ready? -->
         <div class="bg-white p-8 rounded-xl">
-          <h3 class="text-xl font-semibold mb-4">Are You Ready?</h3>
+          <h3 class="text-xl font-semibold mb-4"><%= t.cta_are_you_ready %></h3>
           <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-              <span class="text-gray-700">You've identified a real pain point</span>
+              <span class="text-gray-700"><%= t.cta_ready1 %></span>
             </li>
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-              <span class="text-gray-700">You have industry expertise</span>
+              <span class="text-gray-700"><%= t.cta_ready2 %></span>
             </li>
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-              <span class="text-gray-700">You're committed to building together</span>
+              <span class="text-gray-700"><%= t.cta_ready3 %></span>
             </li>
             <li class="flex items-start gap-3">
               <i class="fas fa-check-circle text-purple-500 mt-1"></i>
-              <span class="text-gray-700">You want to move fast</span>
+              <span class="text-gray-700"><%= t.cta_ready4 %></span>
             </li>
           </ul>
         </div>
       </div>
 
       <div class="text-center">
-        <a href="/survey" class="gradient-bg text-white px-10 py-4 rounded text-lg hover:opacity-90 transition inline-block">
-          Share your idea
+        <a href="/survey<%= lang !== 'en' ? '?lang=' + lang : '' %>" class="gradient-bg text-white px-10 py-4 rounded text-lg hover:opacity-90 transition inline-block">
+          <%= t.cta_button %>
         </a>
       </div>
     </div>

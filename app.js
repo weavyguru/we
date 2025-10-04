@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
@@ -20,6 +21,7 @@ mongoose.connect(MONGODB_URI)
 // Set up view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', require('ejs').renderFile);
 
 // Disable view caching in development
 if (process.env.NODE_ENV !== 'production') {
@@ -37,16 +39,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Language detection middleware
+app.use((req, res, next) => {
+  const lang = req.query.lang || req.headers['accept-language']?.split(',')[0]?.split('-')[0];
+  res.locals.lang = (lang === 'sv' || lang === 'no' || lang === 'da' || lang === 'fi') ? lang : 'en';
+  next();
+});
+
 // Routes
 const adminRoutes = require('./routes/admin');
 const surveyRoutes = require('./routes/survey');
+const { translateText } = require('./services/translation');
+const { translatePageStrings, homePageStrings, faqPageStrings, headerStrings } = require('./helpers/pageTranslations');
 
-app.get('/', (req, res) => {
-  res.render('index', { title: 'We - Turning Ideas into Ventures Together' });
+app.get('/', async (req, res) => {
+  const lang = res.locals.lang;
+  const title = await translateText('We - Turning Ideas into Ventures Together', lang);
+  const t = await translatePageStrings(homePageStrings, lang);
+  const h = await translatePageStrings(headerStrings, lang);
+
+  res.render('index', { title, lang, t, h });
 });
 
-app.get('/faq', (req, res) => {
-  res.render('faq', { title: 'FAQ - We Venture Studio' });
+app.get('/faq', async (req, res) => {
+  const lang = res.locals.lang;
+  const title = await translateText('FAQ - We Venture Studio', lang);
+  const t = await translatePageStrings(faqPageStrings, lang);
+  const h = await translatePageStrings(headerStrings, lang);
+
+  res.render('faq', { title, lang, t, h });
 });
 
 app.use('/admin/survey', adminRoutes);
