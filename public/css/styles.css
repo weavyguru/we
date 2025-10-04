@@ -59,3 +59,24 @@ sl-details::part(header) {
 sl-details::part(content) {
   padding: 0 1.5rem 1rem 1.5rem;
 }
+
+/* Language Switch Styling */
+sl-switch::part(control) {
+  background-color: #e5e7eb;
+  border: none;
+}
+
+sl-switch[checked]::part(control) {
+  background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F97316 100%);
+  border: none;
+}
+
+sl-switch::part(thumb) {
+  background-color: white;
+  border: 2px solid #808080;
+}
+
+sl-switch:focus-visible::part(control) {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
